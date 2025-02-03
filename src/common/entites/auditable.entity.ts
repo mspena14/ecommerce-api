@@ -18,7 +18,6 @@ export abstract class AuditableEntity {
     })
     updatedAt: Date;
 
-    
     @DeleteDateColumn({
         name: 'deleted_at',
         type: 'timestamptz',

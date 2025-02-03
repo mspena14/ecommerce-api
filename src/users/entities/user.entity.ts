@@ -1,3 +1,4 @@
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Cart } from "src/carts/entities/cart.entity";
 import { AuditableEntity } from "src/common/entites/auditable.entity";
 import { UserRole } from "src/common/enums/user-role.enum";
@@ -5,7 +6,6 @@ import { Payment } from "src/payments/entities/payment.entity";
 import { Product } from "src/products/entities/product.entity";
 import { Reservation } from "src/reservations/entities/reservation.entity";
 import { Service } from "src/services/entities/service.entity";
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User extends AuditableEntity {
@@ -29,6 +29,9 @@ export class User extends AuditableEntity {
 
   @Column('text', { nullable: true })
   address: string;
+
+  @Column('uuid', { nullable: true })
+  resetPasswordToken: string;
   
   @OneToMany(() => Cart, (cart) => cart.buyer, { cascade: true })
   carts: Cart;

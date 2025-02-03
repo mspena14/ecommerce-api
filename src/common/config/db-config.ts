@@ -23,7 +23,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
       username: this.configService.get<string>('DB_USER'),
       password: this.configService.get<string>('DB_PASSWORD'),
       database: this.configService.get<string>('DB_NAME'),
-      
+      synchronize: true,
       entities: [
         User,
         Cart,
@@ -32,7 +32,7 @@ export class DatabaseConfigService implements TypeOrmOptionsFactory {
         Product,
         Reservation,
         Schedule,
-        Service
+        Service,
       ],
     };
   }

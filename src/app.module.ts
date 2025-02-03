@@ -7,9 +7,29 @@ import { ReservationsModule } from './reservations/reservations.module';
 import { CartsModule } from './carts/carts.module';
 import { CartItemsModule } from './cart-items/cart-items.module';
 import { PaymentsModule } from './payments/payments.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { DatabaseConfigService } from './common/config/db-config';
 
 @Module({
-  imports: [UsersModule, ProductsModule, ServicesModule, SchedulesModule, ReservationsModule, CartsModule, CartItemsModule, PaymentsModule],
+  imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: '.env',
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: DatabaseConfigService,
+    }),
+    UsersModule,
+    ProductsModule,
+    ServicesModule,
+    SchedulesModule,
+    ReservationsModule,
+    CartsModule,
+    CartItemsModule,
+    PaymentsModule,
+  ],
   controllers: [],
   providers: [],
 })

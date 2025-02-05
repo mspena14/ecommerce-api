@@ -30,6 +30,11 @@ export class UsersService {
     return await this.usersRepository.save(userCreated);
   }
 
+  async findAllUsers() {
+    const usersFound = await this.usersRepository.find();
+    if (!usersFound) throw new InternalServerErrorException('There was a error finding the users')
+  }
+
   async findOneById(id: string): Promise<User | null> {
     const userFound = await this.usersRepository.findOne({ where: { id } });
     return userFound || null;

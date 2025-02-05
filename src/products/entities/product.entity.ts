@@ -1,7 +1,6 @@
 import { CartItem } from "src/cart-items/entities/cart-item.entity";
 import { AuditableEntity } from "src/common/entites/auditable.entity";
 import { CategoriesEnum } from "src/common/enums/categories.enum";
-import { ImageInterface } from "src/common/interfaces/images.interface";
 import { User } from "src/users/entities/user.entity";
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
@@ -22,8 +21,8 @@ export class Product extends AuditableEntity {
   @Column('int', { nullable: false })
   stock: number;
 
-  @Column('jsonb', { nullable: true })
-  images: ImageInterface;
+  @Column('text', { array: true, nullable: true, default: [] })
+  images: string[];
 
   @Column('enum', { enum: CategoriesEnum })
   category: CategoriesEnum;

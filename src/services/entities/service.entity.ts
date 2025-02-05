@@ -1,5 +1,5 @@
-import { CartItem } from "src/cart-items/entities/cart-item.entity";
 import { AuditableEntity } from "src/common/entites/auditable.entity";
+import { CategoriesEnum } from "src/common/enums/categories.enum";
 import { Reservation } from "src/reservations/entities/reservation.entity";
 import { Schedule } from "src/schedules/entities/schedule.entity";
 import { User } from "src/users/entities/user.entity";
@@ -18,6 +18,9 @@ export class Service extends AuditableEntity {
 
   @Column('decimal', { precision: 10, scale: 2, nullable: false })
   price: number;
+
+  @Column('enum', { enum: CategoriesEnum })
+  category: CategoriesEnum;
 
   @ManyToOne(() => User, (user) => user.services, { nullable: false })
   @JoinColumn({ name: 'seller_id' })

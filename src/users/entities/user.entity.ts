@@ -21,13 +21,13 @@ export class User extends AuditableEntity {
   @Column('text', { nullable: false })
   password: string;
 
-  @Column('enum', { enum: UserRole, nullable: false })
+  @Column('enum', { enum: UserRole, nullable: false, default: UserRole.SELLER })
   role: UserRole;
 
   @Column('text', { nullable: true })
   phone: string;
 
-  @Column('text', { nullable: true })
+  @Column('text')
   address: string;
 
   @Column('uuid', { nullable: true })

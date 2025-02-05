@@ -53,7 +53,7 @@ export class AuthService {
     }
   }
 
-  async register({ name, email, password, role, phone }: RegisterUserDto) {
+  async register({ name, email, password, role, phone, address }: RegisterUserDto) {
     try {
       const salt: string = bcrypt.genSaltSync();
       const userCreated: User = await this.userService.createUser({
@@ -62,6 +62,7 @@ export class AuthService {
         password: await bcrypt.hash(password, salt),
         phone,
         role,
+        address
       });
       const registerResponse = {
         id: userCreated.id,
@@ -73,6 +74,8 @@ export class AuthService {
       return registerResponse;
     } catch (error) {
       if (error instanceof QueryFailedError) {
+        console.log(error);
+        
         throw new QueryFailedError('Bad request', undefined, error);
       }
       throw new InternalServerErrorException(

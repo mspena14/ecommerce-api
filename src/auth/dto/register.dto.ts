@@ -16,6 +16,10 @@ export class RegisterUserDto {
   password: string;
 
   @IsNotEmpty()
+  @IsString()
+  address: string;
+
+  @IsNotEmpty()
   @IsEnum(UserRole)
   role: UserRole;
 

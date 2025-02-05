@@ -42,8 +42,7 @@ export class UsersService {
 
   async findOneByEmail(email: string): Promise<User | null> {
     const userFound = await this.usersRepository.findOne({
-      where: { email },
-      relations: ['budgets.categories.expenses'],
+      where: { email }
     });
 
     return userFound || null;

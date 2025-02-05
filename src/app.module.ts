@@ -9,6 +9,7 @@ import { CartItemsModule } from './cart-items/cart-items.module';
 import { PaymentsModule } from './payments/payments.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
+import { AuthModule } from './auth/auth.module'
 import { DatabaseConfigService } from './common/config/db-config';
 
 @Module({
@@ -21,6 +22,7 @@ import { DatabaseConfigService } from './common/config/db-config';
       imports: [ConfigModule],
       useClass: DatabaseConfigService,
     }),
+    AuthModule,
     UsersModule,
     ProductsModule,
     ServicesModule,
